@@ -1215,7 +1215,7 @@ public:
   // labeltypes:
   static void set_labeltype(Fl_Labeltype,Fl_Label_Draw_F*,Fl_Label_Measure_F*);
   /** Sets the functions to call to draw and measure a specific labeltype. */
-  static void set_labeltype(Fl_Labeltype, Fl_Labeltype from); // is it defined ?
+  //static void set_labeltype(Fl_Labeltype, Fl_Labeltype from); // is it defined ?
 
   // boxtypes:
   static Fl_Box_Draw_F *get_boxtype(Fl_Boxtype);

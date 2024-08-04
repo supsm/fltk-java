@@ -63,9 +63,10 @@ protected:
         clrs, bkgd, trans,
         dispose, delay;
     const uchar *bptr;
-    const struct CPAL {
+    struct CPAL {
       uchar r, g, b;
-    } *cpal;
+    };
+    const CPAL *cpal;
     GIF_FRAME(int frame, uchar *data) : ifrm(frame), bptr(data) {}
     GIF_FRAME(int frame, int W, int H, int fx, int fy, int fw, int fh, uchar *data) :
       ifrm(frame), width(W), height(H), x(fx), y(fy), w(fw), h(fh), bptr(data) {}

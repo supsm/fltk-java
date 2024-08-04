@@ -522,7 +522,7 @@ inline void fl_pie(int x, int y, int w, int h, double a1, double a2) {
   fl_graphics_driver->pie(x, y, w, h, a1, a2);
 }
 /** fl_chord declaration is a place holder - the function does not yet exist */
-FL_EXPORT void fl_chord(int x, int y, int w, int h, double a1, double a2); // nyi
+//FL_EXPORT void fl_chord(int x, int y, int w, int h, double a1, double a2); // nyi
 
 // scalable drawing code (code in fl_vertex.cxx and fl_arc.cxx):
 /**

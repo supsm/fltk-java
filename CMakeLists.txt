@@ -120,6 +120,21 @@ endif()
 add_subdirectory(src)
 
 #######################################################################
+# build FLTK JNI library
+#######################################################################
+
+find_package(JNI REQUIRED)
+include_directories("${JNI_INCLUDE_DIRS}")
+add_library(fltk-jni SHARED "swig/fltk_wrap.cxx")
+target_link_libraries(fltk-jni PUBLIC fltk::fltk fltk::images)
+if (FLTK_BUILD_GL)
+  target_link_libraries(fltk-jni PUBLIC fltk::gl)
+  message(STATUS "Building FLTK JNI library with OpenGL support")
+else()
+message(STATUS "Building FLTK JNI library without OpenGL support")
+endif()
+
+#######################################################################
 # build fluid (optional)
 #######################################################################
 

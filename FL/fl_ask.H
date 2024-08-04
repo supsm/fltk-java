@@ -58,8 +58,8 @@ FL_EXPORT int fl_ask(const char *, ...) __fl_attr((__format__(__printf__, 1, 2),
 
 FL_EXPORT int fl_choice(const char *q, const char *b0, const char *b1, const char *b2, ...)
     __fl_attr((__format__(__printf__, 1, 5)));
-FL_EXPORT const char *fl_input(const char *label, const char *deflt = 0, ...) __fl_attr((__format__(__printf__, 1, 3)));
-FL_EXPORT const char *fl_password(const char *label, const char *deflt = 0, ...)
+FL_EXPORT const char *fl_input(const char *label, const char *deflt, ...) __fl_attr((__format__(__printf__, 1, 3)));
+FL_EXPORT const char *fl_password(const char *label, const char *deflt, ...)
     __fl_attr((__format__(__printf__, 1, 3)));
 
 // since FLTK 1.3.8:
@@ -70,10 +70,10 @@ FL_EXPORT int fl_choice_n(const char *q, const char *b0, const char *b1, const c
 
 // since FLTK 1.4.0: with 'maxchar' to limit input size
 
-FL_EXPORT const char *fl_input(int maxchar, const char *label, const char *deflt = 0, ...)
+FL_EXPORT const char *fl_input(int maxchar, const char *label, const char *deflt, ...)
     __fl_attr((__format__(__printf__, 2, 4)));
 
-FL_EXPORT const char *fl_password(int maxchar, const char *label, const char *deflt = 0, ...)
+FL_EXPORT const char *fl_password(int maxchar, const char *label, const char *deflt, ...)
     __fl_attr((__format__(__printf__, 2, 4)));
 
 // since FLTK 1.4.0 -- only with option FLTK_USE_STD

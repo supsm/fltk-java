@@ -94,3 +94,8 @@ src/xdg-shell-protocol.c
 /out/build/x64-Debug
 /CMakeSettings.json
 /CppProperties.json
+
+gen-docs
+swig-java/
+swig/*.cxx
+swig/*.h

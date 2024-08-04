@@ -23,6 +23,8 @@
 #include <stdlib.h>
 #include "flstring.h"
 
+#include <FL/swig_callback_helpers.h>
+
 
 ////////////////////////////////////////////////////////////////
 // for compatibility with Forms, all widgets without callbacks are
@@ -178,6 +180,10 @@ Fl_Widget::~Fl_Widget() {
   fl_throw_focus(this);
   // remove stale entries from default callback queue (Fl::readqueue())
   if (callback_ == default_callback) cleanup_readqueue(this);
+  // unregister callbacks (swig)
+  //if (callback_ == callback_wrapper) unregister_callback(this);
+  if (callback_ == (Fl_Callback*)(fl_intptr_t)(callback0_wrapper)) unregister_callback0(this);
+  else if (callback_ == (Fl_Callback*)(fl_intptr_t)(callback1_wrapper)) unregister_callback1(this);
   if ( (flags_ & AUTO_DELETE_USER_DATA) && user_data_)
     delete (Fl_Callback_User_Data*)user_data_;
 }
