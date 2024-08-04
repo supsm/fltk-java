@@ -1,6 +1,8 @@
 # README - Fast Light Tool Kit Java Bindings Version 1.4.0
 Provides Java Native Interface (JNI) bindings for [fltk](https://github.com/fltk/fltk), generated with [swig](https://www.swig.org).
 
+![Build](https://github.com/supsm/fltk-java/actions/workflows/build.yml/badge.svg)
+
 ## WHAT IS FLTK?
 
     The Fast Light Tool Kit is a cross-platform C++ GUI toolkit for
