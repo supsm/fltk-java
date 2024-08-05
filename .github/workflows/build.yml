@@ -258,6 +258,7 @@ jobs:
       run: cmake --build . --config Release
     
     - name: Collect Build Artifacts
+      shell: cmd
       run: |
         mkdir artifacts
         mkdir artifacts/swig
