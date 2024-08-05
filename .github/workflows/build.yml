@@ -141,7 +141,7 @@ jobs:
         cmake --install swig/build
         cd ..
         mkdir swig-java
-        ./temp/swig-bin/bin/swig.exe -java -c++ -package org.fltk -outdir swig-java swig/fltk.i
+        ./temp/swig-bin/bin/swig -java -c++ -package org.fltk -outdir swig-java swig/fltk.i
 
     - name: Create Build Environment
       # Some projects don't allow in-source building, so create a separate build directory
@@ -211,7 +211,7 @@ jobs:
 
     - name: Configure CMake
       working-directory: ${{github.workspace}}/build
-      run: cmake -D FLTK_USE_SYSTEM_LIBJPEG:BOOL=OFF -D FLTK_USE_SYSTEM_LIBPNG:BOOL=OFF -D FLTK_USE_SYSTEM_ZLIB:BOOL=OFF -DFLTK_BUILD_SHARED_LIBS:BOOL=ON ..
+      run: cmake -D FLTK_USE_SYSTEM_LIBJPEG:BOOL=OFF -D FLTK_USE_SYSTEM_LIBPNG:BOOL=OFF -D FLTK_USE_SYSTEM_ZLIB:BOOL=OFF -DFLTK_BUILD_SHARED_LIBS:BOOL=OFF ..
 
     - name: Build
       working-directory: ${{github.workspace}}/build
