@@ -21,13 +21,23 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: install prerequisites
-      run: sudo apt-get update -y && sudo apt-get install -y libasound2-dev libglew-dev libglu1-mesa-dev libx11-dev libxcursor-dev libxft-dev libxinerama-dev
+      run: sudo apt-get update -y && sudo apt-get install -y libasound2-dev libglew-dev libglu1-mesa-dev libx11-dev libxcursor-dev libxft-dev libxinerama-dev libpcre2-dev bison ninja-build
     
     - name: Setup JDK
       uses: actions/setup-java@v2
       with:
         distribution: temurin
         java-version: 8
+    
+    - name: Build and Run SWIG
+      run: |
+        mkdir temp && cd temp
+        git clone https://github.com/swig/swig -b v4.2.1
+        cmake -S swig -B swig/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$PWD/swig-bin"
+        cmake --build swig/build
+        cmake --install swig/build
+        cd ..
+        ./temp/swig-bin/bin/swig -java -c++ -package org.fltk -outdir swig-java swig/fltk.i
 
     - name: Create Build Environment
       # Some projects don't allow in-source building, so create a separate build directory
@@ -63,13 +73,23 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Install prerequisites
-      run: sudo apt-get update -y && sudo apt-get install -y libasound2-dev libglu1-mesa-dev libwayland-dev wayland-protocols libdbus-1-dev libxkbcommon-dev libegl-dev libopengl-dev libpango1.0-dev libgtk-3-dev
+      run: sudo apt-get update -y && sudo apt-get install -y libasound2-dev libglu1-mesa-dev libwayland-dev wayland-protocols libdbus-1-dev libxkbcommon-dev libegl-dev libopengl-dev libpango1.0-dev libgtk-3-dev libpcre2-dev bison ninja-build
 
     - name: Setup JDK
       uses: actions/setup-java@v2
       with:
         distribution: temurin
         java-version: 8
+    
+    - name: Build and Run SWIG
+      run: |
+        mkdir temp && cd temp
+        git clone https://github.com/swig/swig -b v4.2.1
+        cmake -S swig -B swig/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$PWD/swig-bin"
+        cmake --build swig/build
+        cmake --install swig/build
+        cd ..
+        ./temp/swig-bin/bin/swig -java -c++ -package org.fltk -outdir swig-java swig/fltk.i
 
     - name: Create Build Environment
       # Some projects don't allow in-source building, so create a separate build directory
@@ -107,6 +127,17 @@ jobs:
       with:
         distribution: temurin
         java-version: 8
+    
+    - name: Build and Run SWIG
+      run: |
+        mkdir temp && cd temp
+        brew install pcre2 bison
+        git clone https://github.com/swig/swig -b v4.2.1
+        cmake -S swig -B swig/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$PWD/swig-bin"
+        cmake --build swig/build
+        cmake --install swig/build
+        cd ..
+        ./temp/swig-bin/bin/swig.exe -java -c++ -package org.fltk -outdir swig-java swig/fltk.i
 
     - name: Create Build Environment
       # Some projects don't allow in-source building, so create a separate build directory
@@ -148,6 +179,23 @@ jobs:
       with:
         distribution: temurin
         java-version: 8
+    
+    - name: Build and Run SWIG
+      run: |
+        mkdir temp && cd temp
+        git clone https://github.com/PCRE2Project/pcre2 -b pcre2-10.44
+        git clone https://github.com/lexxmark/winflexbison -b v2.5.25
+        git clone https://github.com/swig/swig -b v4.2.1
+        cmake -S pcre2 -B pcre2/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DBUILD_STATIC_LIBS=False -DBUILD_SHARED_LIBS=True
+        cmake --build pcre2/build
+        cmake -S winflexbison -B winflexbison/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DUSE_STATIC_RUNTIME=True
+        cmake --build winflexbison/build
+        cmake -S swig -B swig/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DPCRE2_INCLUDE_DIR="%cd%/pcre2/build/" -DPCRE2_LIBRARY="%cd%/pcre2/build/pcre2-8.lib" -DBISON_EXECUTABLE="%cd%/winflexbison/bin/Release/win_bison.exe" -DCMAKE_INSTALL_PREFIX="%cd%/swig-bin"
+        cmake --build swig/build
+        cmake --install swig/build
+        copy pcre2\build\pcre2-8.dll swig-bin\bin\
+        cd ..
+        temp\swig-bin\bin\swig.exe -java -c++ -package org.fltk -outdir swig-java swig/fltk.i
 
     - name: Create Build Environment
       run: cmake -E make_directory ${{github.workspace}}/build
