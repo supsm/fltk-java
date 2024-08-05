@@ -290,12 +290,12 @@ bool register_callback0(JNIEnv* env, Fl_Widget* w, jobject callback)
 bool register_callback1(JNIEnv* env, Fl_Widget* w, jobject callback)
 {
 	w->callback(callback1_wrapper);
-	return callbacks1.emplace(w, jobject_wrapper(env, callback, "handle", "(Lorg/fltk/Fl_Widget;I)V"));
+	return callbacks1.emplace(w, jobject_wrapper(env, callback, "handle", "(Lorg/fltk/Fl_Widget;J)V"));
 }
 bool register_callback1(JNIEnv* env, Fl_Widget* w, jobject callback, long user_data)
 {
 	w->callback(callback1_wrapper, user_data);
-	return callbacks1.emplace(w, jobject_wrapper(env, callback, "handle", "(Lorg/fltk/Fl_Widget;I)V"));
+	return callbacks1.emplace(w, jobject_wrapper(env, callback, "handle", "(Lorg/fltk/Fl_Widget;J)V"));
 }
 
 bool unregister_callback0(Fl_Widget* w)
