@@ -269,7 +269,7 @@ jobs:
         mkdir artifacts/bin
         robocopy swig-java artifacts/swig/swig-java /s /e
         robocopy swig artfacts/swig/swig /s /e
-        copy build/libfltk-jni.so artifacts/bin/
+        copy build/lib/Release/fltk-jni.dll artifacts/bin/
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v2
