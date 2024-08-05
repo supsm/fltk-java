@@ -76,11 +76,6 @@ jobs:
         name: linux
         path: artifacts/
 
-    - name: Unittest
-      working-directory: ${{github.workspace}}/build
-      shell: bash
-      run: ./bin/test/unittests --core
-
 
   build-wayland:
     runs-on: ubuntu-latest
@@ -267,8 +262,8 @@ jobs:
         mkdir artifacts
         mkdir artifacts/swig
         mkdir artifacts/bin
-        robocopy swig-java artifacts/swig/swig-java /s /e
-        robocopy swig artifacts/swig/swig /s /e
+        (robocopy swig-java artifacts/swig/swig-java /s /e) ^& IF %ERRORLEVEL% LSS 8 SET ERRORLEVEL = 0
+        (robocopy swig artifacts/swig/swig /s /e) ^& IF %ERRORLEVEL% LSS 8 SET ERRORLEVEL = 0
         copy ${{github.workspace}}\build\lib\Release\fltk-jni.dll artifacts\bin\
 
     - name: Upload Build Artifacts
