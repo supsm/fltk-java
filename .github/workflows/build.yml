@@ -26,6 +26,7 @@ jobs:
     - name: Setup JDK
       uses: actions/setup-java@v2
       with:
+        distribution: temurin
         java-version: 8
 
     - name: Create Build Environment
@@ -67,6 +68,7 @@ jobs:
     - name: Setup JDK
       uses: actions/setup-java@v2
       with:
+        distribution: temurin
         java-version: 8
 
     - name: Create Build Environment
@@ -103,6 +105,7 @@ jobs:
     - name: Setup JDK
       uses: actions/setup-java@v2
       with:
+        distribution: temurin
         java-version: 8
 
     - name: Create Build Environment
@@ -143,6 +146,7 @@ jobs:
     - name: Setup JDK
       uses: actions/setup-java@v2
       with:
+        distribution: temurin
         java-version: 8
 
     - name: Create Build Environment
