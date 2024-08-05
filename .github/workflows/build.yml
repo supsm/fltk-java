@@ -37,6 +37,7 @@ jobs:
         cmake --build swig/build
         cmake --install swig/build
         cd ..
+        mkdir swig-java
         ./temp/swig-bin/bin/swig -java -c++ -package org.fltk -outdir swig-java swig/fltk.i
 
     - name: Create Build Environment
@@ -89,6 +90,7 @@ jobs:
         cmake --build swig/build
         cmake --install swig/build
         cd ..
+        mkdir swig-java
         ./temp/swig-bin/bin/swig -java -c++ -package org.fltk -outdir swig-java swig/fltk.i
 
     - name: Create Build Environment
@@ -132,11 +134,13 @@ jobs:
       run: |
         mkdir temp && cd temp
         brew update && brew install pcre2 bison ninja
+        export PATH="/opt/homebrew/opt/bison/bin:$PATH"
         git clone https://github.com/swig/swig -b v4.2.1
         cmake -S swig -B swig/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$PWD/swig-bin"
         cmake --build swig/build
         cmake --install swig/build
         cd ..
+        mkdir swig-java
         ./temp/swig-bin/bin/swig.exe -java -c++ -package org.fltk -outdir swig-java swig/fltk.i
 
     - name: Create Build Environment
@@ -184,6 +188,7 @@ jobs:
     - uses: ilammy/msvc-dev-cmd@v1
     
     - name: Build and Run SWIG
+      shell: cmd
       run: |
         mkdir temp && cd temp
         git clone https://github.com/PCRE2Project/pcre2 -b pcre2-10.44
@@ -198,6 +203,7 @@ jobs:
         cmake --install swig/build
         copy pcre2\build\pcre2-8.dll swig-bin\bin\
         cd ..
+        mkdir swig-java
         temp\swig-bin\bin\swig.exe -java -c++ -package org.fltk -outdir swig-java swig/fltk.i
 
     - name: Create Build Environment
