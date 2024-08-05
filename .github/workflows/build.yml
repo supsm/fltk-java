@@ -68,7 +68,7 @@ jobs:
         mkdir artifacts/bin
         cp -r swig-java artifacts/swig/
         cp -r swig artifacts/swig/
-        cp build/libfltk-jni.so artifacts/bin/
+        cp ${{github.workspace}}/build/libfltk-jni.so artifacts/bin/
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v2
@@ -136,7 +136,7 @@ jobs:
         mkdir artifacts/bin
         cp -r swig-java artifacts/swig/
         cp -r swig artifacts/swig/
-        cp build/libfltk-jni.so artifacts/bin/
+        cp ${{github.workspace}}/build/libfltk-jni.so artifacts/bin/
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v2
@@ -201,7 +201,7 @@ jobs:
         mkdir artifacts/bin
         cp -r swig-java artifacts/swig/
         cp -r swig artifacts/swig/
-        cp build/libfltk-jni.dylib artifacts/bin/
+        cp ${{github.workspace}}/build/libfltk-jni.dylib artifacts/bin/
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v2
@@ -269,7 +269,7 @@ jobs:
         mkdir artifacts/bin
         robocopy swig-java artifacts/swig/swig-java /s /e
         robocopy swig artifacts/swig/swig /s /e
-        copy build\lib\Release\fltk-jni.dll artifacts\bin\
+        copy ${{github.workspace}}\build\lib\Release\fltk-jni.dll artifacts\bin\
 
     - name: Upload Build Artifacts
       uses: actions/upload-artifact@v2
