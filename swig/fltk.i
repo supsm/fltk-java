@@ -376,9 +376,7 @@ public static boolean register_callback(Fl_Widget arg0, Fl_Callback1_Base arg1, 
 
 %ignore *::callback;
 
-%ignore callback_wrapper;
-%ignore callback0_wrapper;
-%ignore callback1_wrapper;
+%ignore *::vprintf;
 
 %ignore Fl_Native_File_Chooser_FLTK_Driver;
 %ignore Fl_Group::forms_end;
