@@ -131,7 +131,7 @@ jobs:
     - name: Build and Run SWIG
       run: |
         mkdir temp && cd temp
-        brew install pcre2 bison ninja
+        brew update && brew install pcre2 bison ninja
         git clone https://github.com/swig/swig -b v4.2.1
         cmake -S swig -B swig/build -G Ninja -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX="$PWD/swig-bin"
         cmake --build swig/build
@@ -181,6 +181,7 @@ jobs:
         java-version: 8
 
     - uses: seanmiddleditch/gha-setup-ninja@v5
+    - uses: ilammy/msvc-dev-cmd@v1
     
     - name: Build and Run SWIG
       run: |
