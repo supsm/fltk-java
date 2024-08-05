@@ -65,6 +65,7 @@ set(FLTK_VERSION ${FLTK_VERSION} CACHE STRING "FLTK version" FORCE)
 #######################################################################
 # basic setup
 #######################################################################
+set(CMAKE_POSITION_INDEPENDENT_CODE True)
 include(CMake/setup.cmake)
 
 #######################################################################
@@ -126,11 +127,8 @@ add_subdirectory(src)
 find_package(JNI REQUIRED)
 include_directories("${JNI_INCLUDE_DIRS}")
 add_library(fltk-jni SHARED "swig/fltk_wrap.cxx")
-set_property(TARGET fltk-jni PROPERTY POSITION_INDEPENDENT_CODE True)
-set_property(TARGET fltk fltk_images PROPERTY POSITION_INDEPENDENT_CODE True)
 target_link_libraries(fltk-jni PUBLIC fltk::fltk fltk::images)
 if (FLTK_BUILD_GL)
-  set_property(TARGET fltk_gl PROPERTY POSITION_INDEPENDENT_CODE True)
   target_link_libraries(fltk-jni PUBLIC fltk::gl)
   message(STATUS "Building FLTK JNI library with OpenGL support")
 else()
