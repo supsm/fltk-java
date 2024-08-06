@@ -88,7 +88,7 @@ set(FL_ABI_VERSION ${FLTK_ABI_VERSION})
 #######################################################################
 
 if(MSVC)
-  option(FLTK_MSVC_RUNTIME_DLL "use MSVC Runtime-DLL (/MDx)" ON)
+  option(FLTK_MSVC_RUNTIME_DLL "use MSVC Runtime-DLL (/MDx)" OFF)
   if(FLTK_MSVC_RUNTIME_DLL)
     set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>DLL")
   else()
